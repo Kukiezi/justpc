@@ -1,0 +1,49 @@
+.headcontainer {
+    align-items: center;
+    background-color: #2D3748
+}
+
+.headtext {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    text-transform: uppercase;
+    color: white;
+}
+
+.text {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #808080;
+}
+
+.textName {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #353434;
+}
+
+.textSpecName {
+    font-family: Montserrat;
+    font-weight: 700;
+    color: gray;
+    line-height: 20px;
+    font-size: 13px;
+}
+
+.textSpecValue {
+    font-family: Montserrat;
+    font-weight: 400;
+    color: gray;
+    font-size: 13px;
+    line-height: 20px;
+    margin-left: 0.3rem;
+}
