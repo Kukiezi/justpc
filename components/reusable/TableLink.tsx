@@ -26,6 +26,11 @@ const deleteProduct = async (component: string, removeProduct: any) => {
                 method: "DELETE"
             });
             break;
+        case "Obudowa":
+            await fetch("http://localhost:3000/api/v1/pcCase", {
+                method: "DELETE"
+            });
+            break;
         default:
             console.log("do nothing");
     }

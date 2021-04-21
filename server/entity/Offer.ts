@@ -3,6 +3,7 @@ import { Motherboard } from "./Motherboard";
 import { Processor } from "./Processor";
 import { GPU } from "./GPU";
 import { CPUCooler } from "./CPUCooler";
+import { PCCase } from "./PCCase";
 
 @Entity()
 export class Offer {
@@ -33,4 +34,7 @@ export class Offer {
     
     @ManyToOne(type => CPUCooler, cpucooler => cpucooler.offers) 
     cpucooler?: CPUCooler;
+
+    @ManyToOne(type => PCCase, pccase => pccase.offers) 
+    pccase?: PCCase;
 }

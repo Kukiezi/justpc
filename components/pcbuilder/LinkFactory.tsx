@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 
 function getLink(component: string) {
     switch(component) {
@@ -10,6 +9,8 @@ function getLink(component: string) {
             return "/produkty/gpu"
         case "Chłodzenie":
             return "/produkty/cpu-cooler"
+        case "Obudowa":
+            return "/produkty/pc-case"
         default:
             return ""
     }

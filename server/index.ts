@@ -5,6 +5,7 @@ import { Processor } from "./entity/Processor";
 import { Motherboard } from "./entity/Motherboard";
 import { GPU } from "./entity/GPU";
 import { CPUCooler } from "./entity/CPUCooler";
+import { PCCase } from "./entity/PCCase";
 
 var bodyParser = require('body-parser')
 var cookieParser = require("cookie-parser");
@@ -23,6 +24,7 @@ app.prepare()
                 const motherboardRepository = connection.getRepository(Motherboard);
                 const gpuRepository = connection.getRepository(GPU);
                 const cpuCoolerRepository = connection.getRepository(CPUCooler);
+                const pcCaseRepository = connection.getRepository(PCCase);
 
                 const server = express();
 
@@ -119,16 +121,37 @@ app.prepare()
                     res.json("Added Sucesfully")
                 });
 
+                server.post("/list/add/pcCase", jsonParser, (req, res) => {
+                    const oneDayToSeconds = 1 * 24 * 60 * 60 * 1000;
+                    if (req.cookies.items) {
+                        req.cookies.items["pcCase"] = req.body.pcCase["pcCase"];
+
+                        res.cookie('items', req.cookies.items, {
+                            maxAge: oneDayToSeconds,
+                            httpOnly: true,
+                            secure: false
+                        });
+                    } else {
+                        res.cookie('items', req.body.pcCase, {
+                            maxAge: oneDayToSeconds,
+                            httpOnly: true,
+                            secure: false
+                        });
+                    }
+                 
+                    res.json("Added Sucesfully")
+                });
+
                 server.get("/list/getItems", (req, res) =>  {
                     res.json(req.cookies.items) 
                 });
 
-                server.get("/api/v1/procesory", async function(req: Request, res: Response) {
-                    const processors = await processorRepository.createQueryBuilder("processor")
-                    .innerJoinAndSelect("processor.offers", "offer")
-                    .getMany();
-                    res.json(processors);
-                });
+                // server.get("/api/v1/procesory", async function(req: Request, res: Response) {
+                //     const processors = await processorRepository.createQueryBuilder("processor")
+                //     .innerJoinAndSelect("processor.offers", "offer")
+                //     .getMany();
+                //     res.json(processors);
+                // });
 
                 server.get("/api/v1/motherboards", async function(req: Request, res: Response) {
                     const motherboards = await motherboardRepository.createQueryBuilder("motherboard")
@@ -149,6 +172,13 @@ app.prepare()
                     .innerJoinAndSelect("cpu_cooler.offers", "offer")
                     .getMany();
                     res.json(cpuCoolers);
+                });
+
+                server.get("/api/v1/pcCase", async function(req: Request, res: Response) {
+                    const pcCases = await pcCaseRepository.createQueryBuilder("pc_case")
+                    .innerJoinAndSelect("pc_case.offers", "offer")
+                    .getMany();
+                    res.json(pcCases);
                 });
 
                 server.get("/api/v1/procesory", async function(req: Request, res: Response) {
@@ -211,6 +241,22 @@ app.prepare()
                     
                     if (req.cookies.items) {
                         delete req.cookies.items["cpuCooler"];
+
+                        res.cookie('items', req.cookies.items, {
+                            maxAge: oneDayToSeconds,
+                            httpOnly: true,
+                            secure: false
+                        });
+                    }
+                 
+                    res.json("Deleted Sucesfully")
+                });
+
+                server.delete("/api/v1/pcCase", jsonParser, (req, res) => {
+                    const oneDayToSeconds = 1 * 24 * 60 * 60 * 1000;
+                    
+                    if (req.cookies.items) {
+                        delete req.cookies.items["pcCase"];
 
                         res.cookie('items', req.cookies.items, {
                             maxAge: oneDayToSeconds,

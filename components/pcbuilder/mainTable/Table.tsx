@@ -45,6 +45,12 @@ export default function Table({items}: any) {
                     ...products,
                     ["cpuCooler"]: null
                 })
+            
+            case "Obudowa":
+                setProducts({
+                    ...products,
+                    ["pcCase"]: null
+                })
             default:
                 console.log("do nothing");
         }
@@ -71,7 +77,7 @@ export default function Table({items}: any) {
             <hr/>
             <RenderProduct removeProduct={removeProduct} component="Chłodzenie" product={products.cpuCooler}/>
             <hr/>
-            <RenderProduct removeProduct={removeProduct} component="Obudowa" product={products.obudowa}/>
+            <RenderProduct removeProduct={removeProduct} component="Obudowa" product={products.pcCase}/>
             <hr/>
             <RenderProduct removeProduct={removeProduct} component="Ram" product={products.ram}/>
         </>

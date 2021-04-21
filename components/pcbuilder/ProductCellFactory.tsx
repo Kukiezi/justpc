@@ -2,6 +2,7 @@ import TableGPUCell from "./mainTable/TableGPUCell";
 import TableMotherboardCell from "./mainTable/TableMotherboardCell";
 import TableProcessorCell from "./mainTable/TableProcessorCell";
 import TableCPUCoolerCell from "./mainTable/TableCPUCoolerCell";
+import TablePcCaseCell from "./mainTable/TablePcCaseCell";
 
 function getProductCell(component: any, product: any) {
     switch(component) {
@@ -13,6 +14,8 @@ function getProductCell(component: any, product: any) {
             return <TableGPUCell gpu={product}/>
         case "Chłodzenie":
             return <TableCPUCoolerCell cpuCooler={product}/>
+        case "Obudowa":
+            return <TablePcCaseCell pcCase={product}/>
         default:
             return null
     }
